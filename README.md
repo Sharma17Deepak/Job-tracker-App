@@ -1,2 +1,3 @@
 # Job-tracker-App
-Making this Job tracker application to clear my React concepts
+Creating Job tracker application 100% by myself
+
