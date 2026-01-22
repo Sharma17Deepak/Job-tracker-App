@@ -3,25 +3,5 @@ body{
     padding:0;
     box-sizing:border-box;
     font-family: 'Roboto', sans-serif;
-    background-color: darkslategrey;
-    color: aliceblue;
 }
-.App {
-    text-align: center;
-    padding: 20px;
-}
-h1 {
-    color: lightcoral;
-}
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: lightseagreen;
-    border: none;
-    border-radius: 5px;
-    color: white;
-}
-button:hover {
-    background-color: teal;
-}
+

@@ -1,21 +1,17 @@
 import React from "react";
 import "./JobCard.css";
 
-const JobCard = () => {
+const JobCard = ({ job }) => {
   return (
-    <div>
-      <center>
-        <h2>Job Card</h2>
-        <h3>Job Title: Software Engineer</h3>
-        <p>Company: TechCorp</p>
-        <p>Location: New York, NY</p>
-        <p>Salary: $120,000</p>
+    <>
+      <div className="job-card">
+        <h3>Company: {job.company}</h3>
+        <p>Role: {job.role}</p>
         <p>
-          Description: Responsible for developing and maintaining web
-          applications.
+          Status: <strong>{job.status}</strong>
         </p>
-      </center>
-    </div>
+      </div>
+    </>
   );
 };
 

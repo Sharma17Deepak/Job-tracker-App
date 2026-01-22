@@ -1,18 +1,21 @@
 import React from "react";
 import "./JobList.css";
+import JobCard from "../JobCard/JobCard";
 
-const JobList = () => {
+const JobList = ({ jobs }) => {
+  if (jobs.length === 0) {
+    return <p style={{ textAlign: "center" }}>No jobs added yet.</p>;
+  }
+
   return (
-    <div>
-      <center>
-        <h2>Job Listings</h2>
-        <ul>
-          <li>Software Engineer at TechCorp - New York, NY - $120,000</li>
-          <li>Product Manager at InnovateX - San Francisco, CA - $130,000</li>
-          <li>Data Analyst at DataWorks - Chicago, IL - $90,000</li>
-        </ul>
-      </center>
-    </div>
+    <>
+      <h2 style={{"textAlign":"center", "marginTop":"50px"}}>Job Listings: </h2>
+      <div className="list-container">
+        {jobs.map((job) => (
+          <JobCard key={job.id} job={job} />
+        ))}
+      </div>
+    </>
   );
 };
 
