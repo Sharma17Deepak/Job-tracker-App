@@ -1,9 +1,21 @@
 .job-card {
   height: 150px;
-  width: 350px;
+  width: 300px;
   border-radius: 8px;
   padding: 16px;
   margin: 0px 50px;
   background-color: #21D19F;
   color: black;
+}
+.card-head{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-head button{
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+  color: white;
 }
