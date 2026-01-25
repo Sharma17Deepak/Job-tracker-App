@@ -8,7 +8,6 @@ function App() {
   const [jobs, setJobs] = useState([]);
   const [filterStatus, setFilterStatus] = useState("All");
 
-
   useEffect(() => {
     const storedJobs = localStorage.getItem("jobs");
     if (storedJobs) {
@@ -32,27 +31,28 @@ function App() {
   };
 
   const filteredJobs =
-  filterStatus === "All"
-    ? jobs
-    : jobs.filter((job) => job.status === filterStatus);
+    filterStatus === "All"
+      ? jobs
+      : jobs.filter((job) => job.status === filterStatus);
 
   return (
     <>
       <Header />
-      <div className="container">
-        <JobForm addJob={addJob} />
-        <div className="filter-btn">
-          <label>Filter by Status:</label>
-          <select className="filter" onChange={(e) => setFilterStatus(e.target.value)}>
+      <JobForm addJob={addJob} />
+      <div className="filter-btn">
+        Filter by Status: 
+        <select
+          className="filter"
+          onChange={(e) => setFilterStatus(e.target.value)}
+        >
           <option>All</option>
           <option>Applied</option>
           <option>Interview</option>
           <option>Offer</option>
           <option>Rejected</option>
         </select>
-        </div>
-        <JobList jobs={filteredJobs} deleteJob={deleteJob} />
       </div>
+      <JobList jobs={filteredJobs} deleteJob={deleteJob} />
     </>
   );
 }

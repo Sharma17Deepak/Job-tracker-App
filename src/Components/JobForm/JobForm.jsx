@@ -5,7 +5,7 @@ const JobForm = ({ addJob }) => {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
   const [type,setType]=useState("");
-  const [status, setStatus] = useState("applied");
+  const [status, setStatus] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,6 +15,7 @@ const JobForm = ({ addJob }) => {
       id: Date.now(),
       company,
       role,
+      type,
       status,
     };
 
