@@ -11,6 +11,7 @@ const JobCard = ({ job , deleteJob}) => {
           <button onClick={() => deleteJob(job.id)}><MdDeleteOutline/></button>
         </div>
         <p>Role: {job.role}</p>
+        <p>Type: {job.type}</p>
         <p>
           Status: <strong>{job.status}</strong>
         </p>
