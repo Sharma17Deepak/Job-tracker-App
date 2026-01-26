@@ -9,7 +9,7 @@ const JobList = ({ jobs, deleteJob }) => {
 
   return (
     <>
-      <h2 style={{"textAlign":"center", "marginTop":"20px"}}>Job Listings: </h2>
+      <h3 style={{"textAlign":"center"}}>Job Listings: </h3>
       <div className="list-container">
         {jobs.map((job) => (
           <JobCard key={job.id} job={job} deleteJob={deleteJob}/>
