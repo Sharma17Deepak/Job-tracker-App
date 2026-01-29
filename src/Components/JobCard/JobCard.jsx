@@ -1,16 +1,21 @@
 import React from "react";
 import "./JobCard.css";
-import { MdDeleteOutline } from "react-icons/md";
+import { MdDeleteOutline, MdOutlineEditCalendar } from "react-icons/md";
 
-const JobCard = ({ job, deleteJob }) => {
+const JobCard = ({ job, deleteJob, startEdit }) => {
   return (
     <>
       <div className="job-card">
         <div className="card-head">
           <h3>Company: {job.company}</h3>
-          <button onClick={() => deleteJob(job.id)}>
-            <MdDeleteOutline />
-          </button>
+          <div>
+            <button onClick={() => startEdit(job)}>
+              <MdOutlineEditCalendar />
+            </button>
+            <button onClick={() => deleteJob(job.id)}>
+              <MdDeleteOutline />
+            </button>
+          </div>
         </div>
         <p>Role: {job.role}</p>
         <p>Type: {job.type}</p>

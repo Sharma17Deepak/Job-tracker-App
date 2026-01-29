@@ -1,25 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./JobForm.css";
 
-const JobForm = ({ addJob }) => {
+const JobForm = ({ addJob, editJob, updateJob }) => {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
-  const [type,setType]=useState("");
+  const [type, setType] = useState("");
   const [status, setStatus] = useState("");
+
+  useEffect(() => {
+    if (editJob) {
+      setCompany(editJob.company);
+      setRole(editJob.role);
+      setType(editJob.type);
+      setStatus(editJob.status);
+    }
+  }, [editJob]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!company || !role) return;
 
-    const newJob = {
-      id: Date.now(),
-      company,
-      role,
-      type,
-      status,
-    };
-
-    addJob(newJob);
+    if (editJob) {
+      updateJob({
+        ...editJob,
+        company,
+        role,
+        type,
+        status,
+      });
+    } else {
+      addJob({
+        id: Date.now(),
+        company,
+        role,
+        type,
+        status,
+      });
+    }
 
     setCompany("");
     setRole("");
@@ -66,7 +83,9 @@ const JobForm = ({ addJob }) => {
           </select>
           <br />
           <br />
-          <button type="submit">Add Job</button>
+          <button type="submit">
+            {editJob ? "Update Job" : "Add Job"}
+          </button>
         </form>
       </center>
     </>

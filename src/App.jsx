@@ -7,6 +7,7 @@ import Header from "./Components/Header/Header.jsx";
 function App() {
   const [jobs, setJobs] = useState([]);
   const [filterStatus, setFilterStatus] = useState("All");
+  const [editJob, setEditJob] = useState(null);
 
   useEffect(() => {
     const storedJobs = localStorage.getItem("jobs");
@@ -22,12 +23,22 @@ function App() {
   }, [jobs]);
 
   const deleteJob = (id) => {
+    if(!window.confirm("Are you sure you want to delete this job?")) return;
     const updatedJobs = jobs.filter((job) => job.id !== id);
     setJobs(updatedJobs);
   };
 
+  const updateJob = (updatedJob) =>{
+    setJobs(jobs.map((job) => (job.id === updatedJob.id ? updatedJob : job)));
+    setEditJob(null);
+  }
+
   const addJob = (job) => {
     setJobs([...jobs, job]);
+  };
+
+  const startEdit = (job) => {
+    setEditJob(job);
   };
 
   const filteredJobs =
@@ -38,7 +49,7 @@ function App() {
   return (
     <>
       <Header />
-      <JobForm addJob={addJob} />
+      <JobForm addJob={addJob} editJob={editJob} updateJob={updateJob} />
       <div className="filter-btn">
         Filter by Status: 
         <select
@@ -52,7 +63,7 @@ function App() {
           <option>Rejected</option>
         </select>
       </div>
-      <JobList jobs={filteredJobs} deleteJob={deleteJob} />
+      <JobList jobs={filteredJobs} deleteJob={deleteJob} startEdit={startEdit} />
     </>
   );
 }
