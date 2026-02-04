@@ -23,15 +23,15 @@ function App() {
   }, [jobs]);
 
   const deleteJob = (id) => {
-    if(!window.confirm("Are you sure you want to delete this job?")) return;
+    if (!window.confirm("Are you sure you want to delete this job?")) return;
     const updatedJobs = jobs.filter((job) => job.id !== id);
     setJobs(updatedJobs);
   };
 
-  const updateJob = (updatedJob) =>{
+  const updateJob = (updatedJob) => {
     setJobs(jobs.map((job) => (job.id === updatedJob.id ? updatedJob : job)));
     setEditJob(null);
-  }
+  };
 
   const addJob = (job) => {
     setJobs([...jobs, job]);
@@ -51,7 +51,10 @@ function App() {
       <Header />
       <JobForm addJob={addJob} editJob={editJob} updateJob={updateJob} />
       <div className="filter-btn">
-        Filter by Status: 
+        <span className="search">
+          <input type="text" placeholder="Search Saved Job's" />
+        </span>
+        <label>Filter by Status:</label>
         <select
           className="filter"
           onChange={(e) => setFilterStatus(e.target.value)}
@@ -63,7 +66,11 @@ function App() {
           <option>Rejected</option>
         </select>
       </div>
-      <JobList jobs={filteredJobs} deleteJob={deleteJob} startEdit={startEdit} />
+      <JobList
+        jobs={filteredJobs}
+        deleteJob={deleteJob}
+        startEdit={startEdit}
+      />
     </>
   );
 }
