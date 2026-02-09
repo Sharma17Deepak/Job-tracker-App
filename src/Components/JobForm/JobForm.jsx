@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./JobForm.css";
 
-const JobForm = ({ addJob, editJob, updateJob }) => {
+const JobForm = ({ addJob, editJob, updateJob, cancelEdit }) => {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
   const [type, setType] = useState("");
@@ -83,9 +83,22 @@ const JobForm = ({ addJob, editJob, updateJob }) => {
           </select>
           <br />
           <br />
-          <button type="submit">
-            {editJob ? "Update Job" : "Add Job"}
-          </button>
+          <button type="submit">{editJob ? "Update Job" : "Add Job"}</button>
+          {editJob && (
+            <button
+              type="button"
+              onClick={() => {
+                cancelEdit();
+                setCompany("");
+                setRole("");
+                setType("");
+                setStatus("");
+              }}
+              style={{ marginLeft: "10px" }}
+            >
+              Cancel Edit
+            </button>
+          )}
         </form>
       </center>
     </>

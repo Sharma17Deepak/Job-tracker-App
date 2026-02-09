@@ -8,6 +8,7 @@ function App() {
   const [jobs, setJobs] = useState([]);
   const [filterStatus, setFilterStatus] = useState("All");
   const [editJob, setEditJob] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const storedJobs = localStorage.getItem("jobs");
@@ -41,6 +42,10 @@ function App() {
     setEditJob(job);
   };
 
+  const cancelEdit = () => {
+    setEditJob(null);
+  };
+
   const filteredJobs =
     filterStatus === "All"
       ? jobs
@@ -49,10 +54,10 @@ function App() {
   return (
     <>
       <Header />
-      <JobForm addJob={addJob} editJob={editJob} updateJob={updateJob} />
+      <JobForm addJob={addJob} editJob={editJob} updateJob={updateJob} cancelEdit={cancelEdit}/>
       <div className="filter-btn">
         <span className="search">
-          <input type="text" placeholder="Search Saved Job's" />
+          <input type="text" placeholder="Search Saved Job's" onChange={() => setSearchTerm(e.target.value)} />
         </span>
         <label>Filter by Status:</label>
         <select
