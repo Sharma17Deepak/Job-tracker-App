@@ -75,6 +75,7 @@ function App() {
         jobs={filteredJobs}
         deleteJob={deleteJob}
         startEdit={startEdit}
+        editJob={editJob}
       />
     </>
   );

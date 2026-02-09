@@ -2,10 +2,10 @@ import React from "react";
 import "./JobCard.css";
 import { MdDeleteOutline, MdOutlineEditCalendar } from "react-icons/md";
 
-const JobCard = ({ job, deleteJob, startEdit }) => {
+const JobCard = ({ job, deleteJob, startEdit, editJob }) => {
   return (
     <>
-      <div className="job-card">
+      <div className= {editJob && editJob.id === job.id ? "job-card-edit": "job-card"}>
         <div className="card-head">
           <h3>Company: {job.company}</h3>
           <div>
