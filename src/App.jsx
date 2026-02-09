@@ -46,18 +46,36 @@ function App() {
     setEditJob(null);
   };
 
-  const filteredJobs =
-    filterStatus === "All"
-      ? jobs
-      : jobs.filter((job) => job.status === filterStatus);
+  let filteredJobs = jobs;
+
+  if (filterStatus !== "All") {
+    filteredJobs = filteredJobs.filter((job) => job.status === filterStatus);
+  }
+
+  if (searchTerm.trim() !== "") {
+    filteredJobs = filteredJobs.filter(
+      (job) =>
+        job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        job.role.toLowerCase().includes(searchTerm.toLowerCase()),
+    );
+  }
 
   return (
     <>
       <Header />
-      <JobForm addJob={addJob} editJob={editJob} updateJob={updateJob} cancelEdit={cancelEdit}/>
+      <JobForm
+        addJob={addJob}
+        editJob={editJob}
+        updateJob={updateJob}
+        cancelEdit={cancelEdit}
+      />
       <div className="filter-btn">
         <span className="search">
-          <input type="text" placeholder="Search Saved Job's" onChange={() => setSearchTerm(e.target.value)} />
+          <input
+            type="text"
+            placeholder="Search Saved Job's"
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </span>
         <label>Filter by Status:</label>
         <select
